@@ -22,6 +22,7 @@ class MoviesEntityAdapter extends TypeAdapter<MoviesEntity> {
       posterUrl: fields[2] as String,
       publishedDate: fields[3] as String,
       rating: fields[4] as double,
+      bkgroundUrl: fields[5] as String,
     );
   }
 

@@ -13,8 +13,11 @@ class MoviesEntity {
   final String publishedDate;
   @HiveField(4)
   final double rating;
+  @HiveField(5)
+  final String bkgroundUrl;
 
   MoviesEntity({
+    required this.bkgroundUrl,
     required this.idMovie,
     required this.name,
     required this.posterUrl,

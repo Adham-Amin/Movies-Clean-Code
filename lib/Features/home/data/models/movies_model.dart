@@ -37,6 +37,7 @@ class MoviesModel extends MoviesEntity {
          posterUrl: posterPath != null ? 'https://image.tmdb.org/t/p/w500/$posterPath' : '',
          publishedDate: releaseDate ?? '',
          rating: voteAverage ?? 0.0,
+         bkgroundUrl: backdropPath != null ? 'https://image.tmdb.org/t/p/w500/$backdropPath' : '',
        );
 
   factory MoviesModel.fromJson(Map<String, dynamic> json) => MoviesModel(
