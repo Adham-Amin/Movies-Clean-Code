@@ -1,15 +1,15 @@
 class MoviesEntity {
-  final int id;
+  final int idMovie;
   final String name;
   final String posterUrl;
-  final String releaseDate;
+  final String publishedDate;
   final double rating;
 
   MoviesEntity({
-    required this.id,
+    required this.idMovie,
     required this.name,
     required this.posterUrl,
-    required this.releaseDate,
+    required this.publishedDate,
     required this.rating,
   });
 }
