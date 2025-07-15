@@ -1,3 +1,4 @@
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies/Core/services/api_service.dart';
 import 'package:movies/Features/home/data/models/movies_model.dart';
 import 'package:movies/Features/home/domain/entities/movies_entity.dart';
@@ -17,10 +18,12 @@ class RemoteHomeDataSourceImpl implements RemoteHomeDataSource {
     var data = await api.get(endPoint: '/popular?language=en-US&page=1');
 
     final List<MoviesEntity> moviesList = [];
-
     for (var movie in data['results']) {
       moviesList.add(MoviesModel.fromJson(movie));
     }
+
+    var box = Hive.box('movies');
+    box.put('popular', moviesList);
 
     return moviesList;
   }
@@ -34,6 +37,9 @@ class RemoteHomeDataSourceImpl implements RemoteHomeDataSource {
       moviesList.add(MoviesModel.fromJson(movie));
     }
 
+    var box = Hive.box('movies');
+    box.put('top_rated', moviesList);
+
     return moviesList;
   }
 
@@ -45,6 +51,9 @@ class RemoteHomeDataSourceImpl implements RemoteHomeDataSource {
     for (var movie in data['results']) {
       moviesList.add(MoviesModel.fromJson(movie));
     }
+
+    var box = Hive.box('movies');
+    box.put('upcoming', moviesList);
 
     return moviesList;
   }
