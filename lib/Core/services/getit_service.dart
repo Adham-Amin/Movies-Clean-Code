@@ -1,6 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movies/Core/services/api_service.dart';
+import 'package:movies/Features/details/data/data_sources/local_details_data_source.dart';
+import 'package:movies/Features/details/data/data_sources/remote_details_data_source.dart';
+import 'package:movies/Features/details/data/repos/details_repo_impl.dart';
+import 'package:movies/Features/details/domain/repos/details_repo.dart';
+import 'package:movies/Features/details/presentation/manager/details_movie_cubit/details_movie_cubit.dart';
+import 'package:movies/Features/details/presentation/manager/similer_movie_cubit/similer_movie_cubit.dart';
 import 'package:movies/Features/home/data/data_sources/local_home_data_source.dart';
 import 'package:movies/Features/home/data/data_sources/remote_home_data_source.dart';
 import 'package:movies/Features/home/data/repos/home_repo_impl.dart';
@@ -27,7 +33,22 @@ Future<void> setupGetit() async {
     ),
   );
 
+  getIt.registerSingleton<DetailsRepo>(
+    DetailsRepoImpl(
+      localDetailsDataSource: LocalDetailsDataSourceImpl(),
+      remoteDetailsDataSource: RemoteDetailsDataSourceImpl(
+        apiService: getIt<ApiService>(),
+      ),
+    ),
+  );
+
   getIt.registerSingleton(UpcomingMoviesCubit(homeRepo: getIt<HomeRepo>()));
   getIt.registerSingleton(PopularMoviesCubit(homeRepo: getIt<HomeRepo>()));
   getIt.registerSingleton(TopRatedMoviesCubit(homeRepo: getIt<HomeRepo>()));
+  getIt.registerSingleton<DetailsMovieCubit>(
+    DetailsMovieCubit(detailsRepo: getIt<DetailsRepo>()),
+  );
+  getIt.registerSingleton<SimilerMovieCubit>(
+    SimilerMovieCubit(detailsRepo: getIt<DetailsRepo>()),
+  );
 }

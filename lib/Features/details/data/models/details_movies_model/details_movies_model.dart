@@ -14,7 +14,7 @@ class DetailsMovieModel extends DetailsMovieEntity {
   String? homepage;
   int? id;
   String? imdbId;
-  List<String>? originCountry;
+  List<dynamic>? originCountry;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
@@ -64,8 +64,8 @@ class DetailsMovieModel extends DetailsMovieEntity {
          idMovie: id ?? 0,
          name: title ?? 'N/A',
          publishedDate: releaseDate ?? 'N/A',
-         backgroundImage: backdropPath ?? '',
-         posterImage: posterPath ?? '',
+         backgroundImage: backdropPath != null ? 'https://image.tmdb.org/t/p/w500/$backdropPath' : '',
+         posterImage: posterPath != null ? 'https://image.tmdb.org/t/p/w500/$posterPath' : '',
          genresList: genres ?? [],
          description: overview ?? 'N/A',
          rating: voteAverage ?? 0.0,
@@ -84,7 +84,7 @@ class DetailsMovieModel extends DetailsMovieEntity {
       homepage: json['homepage'] as String?,
       id: json['id'] as int?,
       imdbId: json['imdb_id'] as String?,
-      originCountry: json['origin_country'] as List<String>?,
+      originCountry: json['origin_country'] as List<dynamic>?,
       originalLanguage: json['original_language'] as String?,
       originalTitle: json['original_title'] as String?,
       overview: json['overview'] as String?,
