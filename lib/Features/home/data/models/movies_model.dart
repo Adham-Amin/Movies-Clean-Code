@@ -34,7 +34,7 @@ class MoviesModel extends MoviesEntity {
   }) : super(
          idMovie: id ?? 0,
          name: title ?? 'N/A',
-         posterUrl: posterPath ?? '',
+         posterUrl: posterPath != null ? 'https://image.tmdb.org/t/p/w500/$posterPath' : '',
          publishedDate: releaseDate ?? '',
          rating: voteAverage ?? 0.0,
        );
