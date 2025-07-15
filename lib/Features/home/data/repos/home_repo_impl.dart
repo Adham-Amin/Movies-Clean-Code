@@ -20,11 +20,11 @@ class HomeRepoImpl extends HomeRepo {
     try {
       var data = await localHomeDataSource.getPopularMovies();
 
-      if (data.isEmpty) {
-        data = await remoteHomeDataSource.getPopularMovies();
+      if (data.isNotEmpty) {
+        return right(data);
       }
-
-      return Right(data);
+      data = await remoteHomeDataSource.getPopularMovies();
+      return right(data);
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));
@@ -38,11 +38,12 @@ class HomeRepoImpl extends HomeRepo {
     try {
       var data = await localHomeDataSource.getTopRatedMovies();
 
-      if (data.isEmpty) {
-        data = await remoteHomeDataSource.getTopRatedMovies();
+      if (data.isNotEmpty) {
+        return right(data);
       }
 
-      return Right(data);
+      data = await remoteHomeDataSource.getTopRatedMovies();
+      return right(data);
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));
@@ -56,11 +57,12 @@ class HomeRepoImpl extends HomeRepo {
     try {
       var data = await localHomeDataSource.getUpcomingMovies();
 
-      if (data.isEmpty) {
-        data = await remoteHomeDataSource.getUpcomingMovies();
+      if (data.isNotEmpty) {
+        return right(data);
       }
 
-      return Right(data);
+      data = await remoteHomeDataSource.getUpcomingMovies();
+      return right(data);
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));
