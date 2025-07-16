@@ -3,7 +3,7 @@ import 'package:movies/Core/services/api_service.dart';
 import 'package:movies/Features/details/data/models/details_movies_model/details_movies_model.dart';
 import 'package:movies/Features/details/domain/entities/details_movie_entity.dart';
 import 'package:movies/Features/home/data/models/movies_model.dart';
-import 'package:movies/Features/home/domain/entities/movies_entity.dart';
+import 'package:movies/Core/domain/entities/movies_entity.dart';
 
 abstract class RemoteDetailsDataSource {
   Future<DetailsMovieEntity> getMovieDetails({required int movieId});

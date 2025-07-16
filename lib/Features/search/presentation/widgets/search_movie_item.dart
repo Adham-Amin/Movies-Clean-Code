@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/Core/utils/app_colors.dart';
 import 'package:movies/Core/utils/app_styles.dart';
-import 'package:movies/Features/home/domain/entities/movies_entity.dart';
+import 'package:movies/Core/domain/entities/movies_entity.dart';
 import 'package:movies/Core/widgets/poster_image.dart';
 
 class SearchMovieItem extends StatelessWidget {

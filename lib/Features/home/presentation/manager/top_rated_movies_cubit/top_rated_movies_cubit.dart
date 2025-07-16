@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/Features/home/domain/entities/movies_entity.dart';
+import 'package:movies/Core/domain/entities/movies_entity.dart';
 import 'package:movies/Features/home/domain/repos/home_repo.dart';
 part 'top_rated_movies_state.dart';
 

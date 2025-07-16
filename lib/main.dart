@@ -8,7 +8,7 @@ import 'package:movies/Core/utils/app_theme.dart';
 import 'package:movies/Features/categories/domain/entities/categories_entity.dart';
 import 'package:movies/Features/details/domain/entities/details_movie_entity.dart';
 import 'package:movies/Features/details/domain/entities/genre_entity.dart';
-import 'package:movies/Features/home/domain/entities/movies_entity.dart';
+import 'package:movies/Core/domain/entities/movies_entity.dart';
 import 'package:movies/Features/home/presentation/manager/popular_movies_cubit/popular_movies_cubit.dart';
 import 'package:movies/Features/home/presentation/manager/top_rated_movies_cubit/top_rated_movies_cubit.dart';
 import 'package:movies/Features/home/presentation/manager/upcoming_movies_cubit/upcoming_movies_cubit.dart';

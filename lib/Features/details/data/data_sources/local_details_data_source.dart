@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies/Features/details/domain/entities/details_movie_entity.dart';
-import 'package:movies/Features/home/domain/entities/movies_entity.dart';
+import 'package:movies/Core/domain/entities/movies_entity.dart';
 
 abstract class LocalDetailsDataSource {
   Future<DetailsMovieEntity?> getMovieDetails({required int movieId});

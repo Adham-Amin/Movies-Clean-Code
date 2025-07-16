@@ -5,6 +5,7 @@ import 'package:movies/Features/categories/data/data_sources/local_categories_da
 import 'package:movies/Features/categories/data/data_sources/remote_categories_data_source.dart';
 import 'package:movies/Features/categories/domain/entities/categories_entity.dart';
 import 'package:movies/Features/categories/domain/repos/categories_repo.dart';
+import 'package:movies/Core/domain/entities/movies_entity.dart';
 
 class CategoriesRepoImpl extends CategoriesRepo {
   final RemoteCategoriesDataSource remoteCategoriesDataSource;
@@ -21,6 +22,23 @@ class CategoriesRepoImpl extends CategoriesRepo {
       if (data.isEmpty) {
         data = await remoteCategoriesDataSource.getCategories();
       }
+      return right(data);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<MoviesEntity>>> getMoviesByCategory({
+    required int categoryId,
+  }) async {
+    try {
+      var data = await remoteCategoriesDataSource.getMoviesByCategory(
+        categoryId: categoryId,
+      );
       return right(data);
     } catch (e) {
       if (e is DioException) {

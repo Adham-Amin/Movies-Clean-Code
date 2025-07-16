@@ -5,7 +5,8 @@ import 'package:movies/Features/categories/data/data_sources/local_categories_da
 import 'package:movies/Features/categories/data/data_sources/remote_categories_data_source.dart';
 import 'package:movies/Features/categories/data/repos/categories_repo_impl.dart';
 import 'package:movies/Features/categories/domain/repos/categories_repo.dart';
-import 'package:movies/Features/categories/presentation/manager/categories_cubit.dart';
+import 'package:movies/Features/categories/presentation/manager/categories_cubit/categories_cubit.dart';
+import 'package:movies/Features/categories/presentation/manager/cubit/movies_category_cubit.dart';
 import 'package:movies/Features/details/data/data_sources/local_details_data_source.dart';
 import 'package:movies/Features/details/data/data_sources/remote_details_data_source.dart';
 import 'package:movies/Features/details/data/repos/details_repo_impl.dart';
@@ -84,5 +85,9 @@ Future<void> setupGetit() async {
   );
   getIt.registerSingleton<CategoriesCubit>(
     CategoriesCubit(categoriesRepo: getIt<CategoriesRepo>()),
+  );
+
+  getIt.registerSingleton<MoviesCategoryCubit>(
+    MoviesCategoryCubit(categoriesRepo: getIt<CategoriesRepo>()),
   );
 }

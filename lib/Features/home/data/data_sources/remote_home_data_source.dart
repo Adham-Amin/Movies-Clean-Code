@@ -1,7 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies/Core/services/api_service.dart';
 import 'package:movies/Features/home/data/models/movies_model.dart';
-import 'package:movies/Features/home/domain/entities/movies_entity.dart';
+import 'package:movies/Core/domain/entities/movies_entity.dart';
 
 abstract class RemoteHomeDataSource {
   Future<List<MoviesEntity>> getPopularMovies();

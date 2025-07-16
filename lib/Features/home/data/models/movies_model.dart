@@ -1,4 +1,4 @@
-import 'package:movies/Features/home/domain/entities/movies_entity.dart';
+import 'package:movies/Core/domain/entities/movies_entity.dart';
 
 class MoviesModel extends MoviesEntity {
   bool? adult;

@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:movies/Core/error/failure.dart';
 import 'package:movies/Features/home/data/data_sources/local_home_data_source.dart';
 import 'package:movies/Features/home/data/data_sources/remote_home_data_source.dart';
-import 'package:movies/Features/home/domain/entities/movies_entity.dart';
+import 'package:movies/Core/domain/entities/movies_entity.dart';
 import 'package:movies/Features/home/domain/repos/home_repo.dart';
 
 class HomeRepoImpl extends HomeRepo {
