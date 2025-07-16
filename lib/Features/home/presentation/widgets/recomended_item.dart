@@ -15,7 +15,7 @@ class RecomendedItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PosterImage(image: movie.posterUrl),
+        PosterImage(movie: movie),
         SizedBox(height: 8.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 6.w),

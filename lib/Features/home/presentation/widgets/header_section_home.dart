@@ -18,13 +18,16 @@ class HeaderSectionHome extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          SizedBox(width: double.infinity, child: CustomCachedNetworkImage(image: movie.bkgroundUrl)),
+          SizedBox(
+            width: double.infinity,
+            child: CustomCachedNetworkImage(image: movie.bkgroundUrl),
+          ),
           Positioned(
             left: 24.w,
             bottom: -80.h,
             child: Row(
               children: [
-                PosterImage(image: movie.posterUrl),
+                PosterImage(movie: movie),
                 SizedBox(width: 16.w),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +39,7 @@ class HeaderSectionHome extends StatelessWidget {
                       '${movie.publishedDate}  ',
                       style: AppStyles.textNormal10,
                     ),
-                    
+
                     Row(
                       children: [
                         Icon(
@@ -45,10 +48,7 @@ class HeaderSectionHome extends StatelessWidget {
                           size: 14.sp,
                         ),
                         SizedBox(width: 4.w),
-                        Text(
-                          '${movie.rating}',
-                          style: AppStyles.textNormal10,
-                        ),
+                        Text('${movie.rating}', style: AppStyles.textNormal10),
                       ],
                     ),
                   ],

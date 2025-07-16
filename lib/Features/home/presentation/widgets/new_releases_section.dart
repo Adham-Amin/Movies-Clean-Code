@@ -15,7 +15,7 @@ class NewReleasesSection extends StatelessWidget {
       title: 'New Releases',
       height: 200.h,
       itemCount: movies.length,
-      itemBuilder: (_, index) => PosterImage(image: movies[index].posterUrl),
+      itemBuilder: (_, index) => PosterImage(movie: movies[index]),
     );
   }
 }

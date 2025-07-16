@@ -14,7 +14,7 @@ class SearchMovieItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        PosterImage(image: movie.posterUrl),
+        PosterImage(movie: movie),
         SizedBox(width: 8.w),
         Expanded(
           child: Column(

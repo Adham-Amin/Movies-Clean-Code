@@ -39,7 +39,7 @@ class _MoviesCategoryViewBodyState extends State<MoviesCategoryViewBody> {
               ),
               itemBuilder:
                   (context, index) =>
-                      PosterImage(image: state.moviesCategory[index].posterUrl),
+                      PosterImage(movie: state.moviesCategory[index]),
               itemCount: state.moviesCategory.length,
             );
           } else if (state is MoviesCategoryFailure) {

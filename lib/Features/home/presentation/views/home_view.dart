@@ -11,15 +11,3 @@ class HomeView extends StatelessWidget {
     );
   }
 }
-
-class TVShowsView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'TV Shows',
-        style: TextStyle(color: Colors.white, fontSize: 24),
-      ),
-    );
-  }
-}

@@ -21,5 +21,9 @@ class AppAssets {
   /// Assets for imagesPosterTest
   /// assets/images/poster_test.png
   static const String imagesPosterTest = "assets/images/poster_test.png";
+
+  /// Assets for imagesUnbookmark
+  /// assets/images/unbookmark.png
+  static const String imagesUnbookmark = "assets/images/unbookmark.png";
 }
 

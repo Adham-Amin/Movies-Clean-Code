@@ -24,6 +24,10 @@ import 'package:movies/Features/search/data/data_sources/remote_search_data_sour
 import 'package:movies/Features/search/data/repos/search_repo_impl.dart';
 import 'package:movies/Features/search/domain/repos/search_repo.dart';
 import 'package:movies/Features/search/presentation/manager/cubit/search_cubit.dart';
+import 'package:movies/Features/watchlist/data/data_sources/local_watchlist_data_source.dart';
+import 'package:movies/Features/watchlist/data/repos/watchlist_repo_impl.dart';
+import 'package:movies/Features/watchlist/domain/repos/watchlist_repo.dart';
+import 'package:movies/Features/watchlist/presentation/cubit/wishlist_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -71,6 +75,10 @@ Future<void> setupGetit() async {
     ),
   );
 
+  getIt.registerSingleton<WatchlistRepo>(
+    WatchlistRepoImpl(localWatchlistDataSource: LocalWatchlistDataSourceImpl()),
+  );
+
   getIt.registerSingleton(UpcomingMoviesCubit(homeRepo: getIt<HomeRepo>()));
   getIt.registerSingleton(PopularMoviesCubit(homeRepo: getIt<HomeRepo>()));
   getIt.registerSingleton(TopRatedMoviesCubit(homeRepo: getIt<HomeRepo>()));
@@ -89,5 +97,9 @@ Future<void> setupGetit() async {
 
   getIt.registerSingleton<MoviesCategoryCubit>(
     MoviesCategoryCubit(categoriesRepo: getIt<CategoriesRepo>()),
+  );
+
+  getIt.registerSingleton<WatchlistCubit>(
+    WatchlistCubit(watchlistRepo: getIt<WatchlistRepo>()),
   );
 }

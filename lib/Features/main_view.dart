@@ -3,6 +3,7 @@ import 'package:movies/Core/utils/app_colors.dart';
 import 'package:movies/Features/categories/presentation/views/categories_view.dart';
 import 'package:movies/Features/home/presentation/views/home_view.dart';
 import 'package:movies/Features/search/presentation/views/search_view.dart';
+import 'package:movies/Features/watchlist/presentation/views/watchlist_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -20,7 +21,7 @@ class MainViewState extends State<MainView> {
     HomeView(),
     SearchView(),
     CategoriesView(),
-    TVShowsView(),
+    WatchlistView(),
   ];
 
   @override
