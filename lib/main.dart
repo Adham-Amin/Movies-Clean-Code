@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies/Core/functions/on_generate_route.dart';
 import 'package:movies/Core/services/getit_service.dart';
 import 'package:movies/Core/utils/app_theme.dart';
+import 'package:movies/Features/categories/domain/entities/categories_entity.dart';
 import 'package:movies/Features/details/domain/entities/details_movie_entity.dart';
 import 'package:movies/Features/details/domain/entities/genre_entity.dart';
 import 'package:movies/Features/home/domain/entities/movies_entity.dart';
@@ -25,6 +26,7 @@ void main() async {
   await Hive.openBox<MoviesEntity>('upcomingMovies');
   await Hive.openBox<DetailsMovieEntity>('moviesDetails');
   await Hive.openBox<MoviesEntity>('similerMovies');
+  await Hive.openBox<CategoriesEntity>('categories');
 
   await setupGetit();
   runApp(const Movies());
