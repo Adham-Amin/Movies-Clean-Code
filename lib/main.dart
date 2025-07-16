@@ -7,8 +7,6 @@ import 'package:movies/Core/services/getit_service.dart';
 import 'package:movies/Core/utils/app_theme.dart';
 import 'package:movies/Features/details/domain/entities/details_movie_entity.dart';
 import 'package:movies/Features/details/domain/entities/genre_entity.dart';
-import 'package:movies/Features/details/presentation/manager/details_movie_cubit/details_movie_cubit.dart';
-import 'package:movies/Features/details/presentation/manager/similer_movie_cubit/similer_movie_cubit.dart';
 import 'package:movies/Features/home/domain/entities/movies_entity.dart';
 import 'package:movies/Features/home/presentation/manager/popular_movies_cubit/popular_movies_cubit.dart';
 import 'package:movies/Features/home/presentation/manager/top_rated_movies_cubit/top_rated_movies_cubit.dart';
@@ -22,7 +20,9 @@ void main() async {
   Hive.registerAdapter(MoviesEntityAdapter());
   Hive.registerAdapter(DetailsMovieEntityAdapter());
   Hive.registerAdapter(GenreEntityAdapter());
-  await Hive.openBox('movies');
+  await Hive.openBox('popularMovies');
+  await Hive.openBox('topRatedMovies');
+  await Hive.openBox('upcomingMovies');
   await Hive.openBox('moviesDetails');
   await setupGetit();
 
@@ -50,8 +50,6 @@ class Movies extends StatelessWidget {
               (context) =>
                   getIt.get<UpcomingMoviesCubit>()..getUpcomingMovies(),
         ),
-        BlocProvider(create: (context) => getIt.get<DetailsMovieCubit>()),
-        BlocProvider(create: (context) => getIt.get<SimilerMovieCubit>()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(412, 892),

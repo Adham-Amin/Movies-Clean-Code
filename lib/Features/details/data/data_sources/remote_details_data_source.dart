@@ -16,7 +16,7 @@ class RemoteDetailsDataSourceImpl implements RemoteDetailsDataSource {
   RemoteDetailsDataSourceImpl({required this.apiService});
   @override
   Future<DetailsMovieEntity> getMovieDetails({required int movieId}) async {
-    var data = await apiService.get(endPoint: '/$movieId?language=en-US');
+    var data = await apiService.get(endPoint: '/movie/$movieId?language=en-US');
     var movie = DetailsMovieModel.fromJson(data);
 
     var box = Hive.box('moviesDetails');
@@ -28,7 +28,7 @@ class RemoteDetailsDataSourceImpl implements RemoteDetailsDataSource {
   @override
   Future<List<MoviesEntity>> getMovieSimiler({required int movieId}) async {
     var data = await apiService.get(
-      endPoint: '/$movieId/similar?language=en-US&page=1',
+      endPoint: '/movie/$movieId/similar?language=en-US&page=1',
     );
 
     List<MoviesEntity> moviesList = [];

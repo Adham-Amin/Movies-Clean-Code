@@ -15,45 +15,45 @@ class RemoteHomeDataSourceImpl implements RemoteHomeDataSource {
   RemoteHomeDataSourceImpl({required this.api});
   @override
   Future<List<MoviesEntity>> getPopularMovies() async {
-    var data = await api.get(endPoint: '/popular?language=en-US&page=1');
+    var data = await api.get(endPoint: '/movie/popular?language=en-US&page=1');
 
     final List<MoviesEntity> moviesList = [];
     for (var movie in data['results']) {
       moviesList.add(MoviesModel.fromJson(movie));
     }
 
-    var box = Hive.box('movies');
-    box.put('popular', moviesList);
+    var box = Hive.box('popularMovies');
+    box.addAll(moviesList);
 
     return moviesList;
   }
 
   @override
   Future<List<MoviesEntity>> getTopRatedMovies() async {
-    var data = await api.get(endPoint: '/top_rated?language=en-US&page=1');
+    var data = await api.get(endPoint: '/movie/top_rated?language=en-US&page=1');
 
     final List<MoviesEntity> moviesList = [];
     for (var movie in data['results']) {
       moviesList.add(MoviesModel.fromJson(movie));
     }
 
-    var box = Hive.box('movies');
-    box.put('top_rated', moviesList);
+    var box = Hive.box('topRatedMovies');
+    box.addAll(moviesList);
 
     return moviesList;
   }
 
   @override
   Future<List<MoviesEntity>> getUpcomingMovies() async {
-    var data = await api.get(endPoint: '/upcoming?language=ar-eg&page=1');
+    var data = await api.get(endPoint: '/movie/upcoming?language=ar-eg&page=2');
 
     final List<MoviesEntity> moviesList = [];
     for (var movie in data['results']) {
       moviesList.add(MoviesModel.fromJson(movie));
     }
 
-    var box = Hive.box('movies');
-    box.put('upcoming', moviesList);
+    var box = Hive.box('upcomingMovies');
+    box.addAll(moviesList);
 
     return moviesList;
   }

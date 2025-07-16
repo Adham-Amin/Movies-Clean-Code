@@ -14,6 +14,10 @@ import 'package:movies/Features/home/domain/repos/home_repo.dart';
 import 'package:movies/Features/home/presentation/manager/popular_movies_cubit/popular_movies_cubit.dart';
 import 'package:movies/Features/home/presentation/manager/top_rated_movies_cubit/top_rated_movies_cubit.dart';
 import 'package:movies/Features/home/presentation/manager/upcoming_movies_cubit/upcoming_movies_cubit.dart';
+import 'package:movies/Features/search/data/data_sources/remote_search_data_source.dart';
+import 'package:movies/Features/search/data/repos/search_repo_impl.dart';
+import 'package:movies/Features/search/domain/repos/search_repo.dart';
+import 'package:movies/Features/search/presentation/manager/cubit/search_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -42,9 +46,20 @@ Future<void> setupGetit() async {
     ),
   );
 
+  getIt.registerSingleton<SearchRepo>(
+    SearchRepoImpl(
+      remoteSearchDataSource: RemoteSearchDataSourceImpl(
+        apiService: getIt<ApiService>(),
+      ),
+    ),
+  );
+
   getIt.registerSingleton(UpcomingMoviesCubit(homeRepo: getIt<HomeRepo>()));
   getIt.registerSingleton(PopularMoviesCubit(homeRepo: getIt<HomeRepo>()));
   getIt.registerSingleton(TopRatedMoviesCubit(homeRepo: getIt<HomeRepo>()));
+  getIt.registerSingleton<SearchCubit>(
+    SearchCubit(searchRepo: getIt<SearchRepo>()),
+  );
   getIt.registerSingleton<DetailsMovieCubit>(
     DetailsMovieCubit(detailsRepo: getIt<DetailsRepo>()),
   );

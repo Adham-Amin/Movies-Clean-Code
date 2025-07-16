@@ -12,19 +12,6 @@ class HomeView extends StatelessWidget {
   }
 }
 
-// Placeholder views for other tabs
-class SearchView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Search',
-        style: TextStyle(color: Colors.white, fontSize: 24),
-      ),
-    );
-  }
-}
-
 class MoviesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
