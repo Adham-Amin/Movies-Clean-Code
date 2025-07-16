@@ -6,7 +6,7 @@ import 'package:movies/Features/categories/data/data_sources/remote_categories_d
 import 'package:movies/Features/categories/data/repos/categories_repo_impl.dart';
 import 'package:movies/Features/categories/domain/repos/categories_repo.dart';
 import 'package:movies/Features/categories/presentation/manager/categories_cubit/categories_cubit.dart';
-import 'package:movies/Features/categories/presentation/manager/cubit/movies_category_cubit.dart';
+import 'package:movies/Features/categories/presentation/manager/movies_category_cubit/movies_category_cubit.dart';
 import 'package:movies/Features/details/data/data_sources/local_details_data_source.dart';
 import 'package:movies/Features/details/data/data_sources/remote_details_data_source.dart';
 import 'package:movies/Features/details/data/repos/details_repo_impl.dart';

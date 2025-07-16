@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/Core/utils/app_colors.dart';
+import 'package:movies/Features/categories/presentation/views/categories_view.dart';
 import 'package:movies/Features/home/presentation/views/home_view.dart';
 import 'package:movies/Features/search/presentation/views/search_view.dart';
 
@@ -18,7 +19,7 @@ class MainViewState extends State<MainView> {
   final List<Widget> _pages = [
     HomeView(),
     SearchView(),
-    MoviesView(),
+    CategoriesView(),
     TVShowsView(),
   ];
 

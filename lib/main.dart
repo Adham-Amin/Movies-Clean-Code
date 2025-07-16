@@ -12,6 +12,8 @@ import 'package:movies/Core/domain/entities/movies_entity.dart';
 import 'package:movies/Features/home/presentation/manager/popular_movies_cubit/popular_movies_cubit.dart';
 import 'package:movies/Features/home/presentation/manager/top_rated_movies_cubit/top_rated_movies_cubit.dart';
 import 'package:movies/Features/home/presentation/manager/upcoming_movies_cubit/upcoming_movies_cubit.dart';
+import 'package:movies/Features/search/domain/repos/search_repo.dart';
+import 'package:movies/Features/search/presentation/manager/cubit/search_cubit.dart';
 import 'Features/splash/presentation/views/splash_view.dart';
 
 void main() async {
@@ -20,6 +22,7 @@ void main() async {
   Hive.registerAdapter(MoviesEntityAdapter());
   Hive.registerAdapter(DetailsMovieEntityAdapter());
   Hive.registerAdapter(GenreEntityAdapter());
+  Hive.registerAdapter(CategoriesEntityAdapter());
 
   await Hive.openBox<MoviesEntity>('popularMovies');
   await Hive.openBox<MoviesEntity>('topRatedMovies');
@@ -52,6 +55,9 @@ class Movies extends StatelessWidget {
           create:
               (context) =>
                   getIt.get<UpcomingMoviesCubit>()..getUpcomingMovies(),
+        ),
+        BlocProvider(
+          create: (context) => SearchCubit(searchRepo: getIt.get<SearchRepo>()),
         ),
       ],
       child: ScreenUtilInit(

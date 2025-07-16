@@ -10,7 +10,7 @@ class MoviesCategoryCubit extends Cubit<MoviesCategoryState> {
 
   final CategoriesRepo categoriesRepo;
 
-  Future<void> getMoviesByCategory(int id) async {
+  Future<void> getMoviesByCategory({required int id}) async {
     emit(MoviesCategoryLoading());
     var result = await categoriesRepo.getMoviesByCategory(categoryId: id);
     result.fold(
