@@ -13,47 +13,63 @@ class RemoteHomeDataSourceImpl implements RemoteHomeDataSource {
   final ApiService api;
 
   RemoteHomeDataSourceImpl({required this.api});
+
   @override
   Future<List<MoviesEntity>> getPopularMovies() async {
-    var data = await api.get(endPoint: '/movie/popular?language=en-US&page=1');
+    final data = await api.get(
+      endPoint: '/movie/popular?language=en-US&page=1',
+    );
 
-    final List<MoviesEntity> moviesList = [];
-    for (var movie in data['results']) {
-      moviesList.add(MoviesModel.fromJson(movie));
+    final List<MoviesEntity> moviesList =
+        (data['results'] as List)
+            .map((movie) => MoviesModel.fromJson(movie))
+            .toList();
+
+    final box = Hive.box<MoviesEntity>('popularMovies');
+    await box.clear(); // تفريغ البيانات القديمة
+    for (var movie in moviesList) {
+      box.put(movie.idMovie, movie); // تخزين كل فيلم بـ ID فريد
     }
-
-    var box = Hive.box('popularMovies');
-    box.addAll(moviesList);
 
     return moviesList;
   }
 
   @override
   Future<List<MoviesEntity>> getTopRatedMovies() async {
-    var data = await api.get(endPoint: '/movie/top_rated?language=en-US&page=1');
+    final data = await api.get(
+      endPoint: '/movie/top_rated?language=en-US&page=1',
+    );
 
-    final List<MoviesEntity> moviesList = [];
-    for (var movie in data['results']) {
-      moviesList.add(MoviesModel.fromJson(movie));
+    final List<MoviesEntity> moviesList =
+        (data['results'] as List)
+            .map((movie) => MoviesModel.fromJson(movie))
+            .toList();
+
+    final box = Hive.box<MoviesEntity>('topRatedMovies');
+    await box.clear();
+    for (var movie in moviesList) {
+      box.put(movie.idMovie, movie);
     }
-
-    var box = Hive.box('topRatedMovies');
-    box.addAll(moviesList);
 
     return moviesList;
   }
 
   @override
   Future<List<MoviesEntity>> getUpcomingMovies() async {
-    var data = await api.get(endPoint: '/movie/upcoming?language=ar-eg&page=2');
+    final data = await api.get(
+      endPoint: '/movie/upcoming?language=ar-eg&page=2',
+    );
 
-    final List<MoviesEntity> moviesList = [];
-    for (var movie in data['results']) {
-      moviesList.add(MoviesModel.fromJson(movie));
+    final List<MoviesEntity> moviesList =
+        (data['results'] as List)
+            .map((movie) => MoviesModel.fromJson(movie))
+            .toList();
+
+    final box = Hive.box<MoviesEntity>('upcomingMovies');
+    await box.clear();
+    for (var movie in moviesList) {
+      box.put(movie.idMovie, movie);
     }
-
-    var box = Hive.box('upcomingMovies');
-    box.addAll(moviesList);
 
     return moviesList;
   }

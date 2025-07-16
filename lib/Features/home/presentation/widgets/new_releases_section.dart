@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/Features/home/domain/entities/movies_entity.dart';
-import 'package:movies/Features/home/presentation/widgets/poster_image.dart';
+import 'package:movies/Core/widgets/poster_image.dart';
 import 'package:movies/Features/home/presentation/widgets/section_container.dart';
 
 class NewReleasesSection extends StatelessWidget {

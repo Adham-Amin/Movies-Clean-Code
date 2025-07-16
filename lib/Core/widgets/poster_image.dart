@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/Core/utils/app_assets.dart';
+import 'package:movies/Core/widgets/custom_network_image.dart';
 
 class PosterImage extends StatefulWidget {
   final double height;
@@ -22,11 +23,7 @@ class _PosterImageState extends State<PosterImage> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
-            child: Image.network(
-              widget.image,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
-            ),
+            child: CustomCachedNetworkImage(image: widget.image),
           ),
           if (!showBookmark)
             Positioned(

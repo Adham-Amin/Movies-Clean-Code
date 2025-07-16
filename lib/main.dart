@@ -19,10 +19,12 @@ void main() async {
   Hive.registerAdapter(MoviesEntityAdapter());
   Hive.registerAdapter(DetailsMovieEntityAdapter());
   Hive.registerAdapter(GenreEntityAdapter());
-  await Hive.openBox('popularMovies');
-  await Hive.openBox('topRatedMovies');
-  await Hive.openBox('upcomingMovies');
-  await Hive.openBox('moviesDetails');
+
+  await Hive.openBox<MoviesEntity>('popularMovies');
+  await Hive.openBox<MoviesEntity>('topRatedMovies');
+  await Hive.openBox<MoviesEntity>('upcomingMovies');
+  await Hive.openBox<DetailsMovieEntity>('moviesDetails');
+  await Hive.openBox<MoviesEntity>('similerMovies');
 
   await setupGetit();
   runApp(const Movies());

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies/Core/utils/app_colors.dart';
 import 'package:movies/Core/widgets/error_widget.dart';
 import 'package:movies/Core/widgets/loading_widget.dart';
 import 'package:movies/Features/search/presentation/manager/cubit/search_cubit.dart';
@@ -31,7 +32,10 @@ class SearchViewBody extends StatelessWidget {
                 return Expanded(
                   child: ListView.separated(
                     itemCount: state.movies.length,
-                    separatorBuilder: (_, __) => SizedBox(height: 12.h),
+                    separatorBuilder: (_, __) => Divider(
+                      height: 24.h,
+                      color: AppColors.ironNight,
+                    ),
                     itemBuilder:
                         (context, index) =>
                             SearchMovieItem(movie: state.movies[index]),

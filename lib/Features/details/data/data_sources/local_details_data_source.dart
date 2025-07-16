@@ -10,21 +10,13 @@ abstract class LocalDetailsDataSource {
 class LocalDetailsDataSourceImpl implements LocalDetailsDataSource {
   @override
   Future<DetailsMovieEntity?> getMovieDetails({required int movieId}) async {
-    final box = Hive.box('moviesDetails');
-    final data = box.get(movieId);
-    if (data is DetailsMovieEntity) {
-      return data;
-    }
-    return null;
+    final box = Hive.box<DetailsMovieEntity>('moviesDetails');
+    return box.get(movieId);
   }
 
   @override
   Future<List<MoviesEntity>> getMovieSimiler({required int movieId}) async {
-    final box = Hive.box('moviesDetails');
-    final data = box.get(movieId);
-    if (data is List<MoviesEntity>) {
-      return data;
-    }
-    return [];
+    final box = Hive.box<MoviesEntity>('similerMovies');
+    return box.values.toList();
   }
 }
