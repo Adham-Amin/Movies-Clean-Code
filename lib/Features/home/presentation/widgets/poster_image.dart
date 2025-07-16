@@ -22,7 +22,11 @@ class _PosterImageState extends State<PosterImage> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
-            child: Image.network(widget.image, fit: BoxFit.cover),
+            child: Image.network(
+              widget.image,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+            ),
           ),
           if (!showBookmark)
             Positioned(

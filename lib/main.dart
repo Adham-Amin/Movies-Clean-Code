@@ -13,7 +13,6 @@ import 'package:movies/Features/home/presentation/manager/top_rated_movies_cubit
 import 'package:movies/Features/home/presentation/manager/upcoming_movies_cubit/upcoming_movies_cubit.dart';
 import 'Features/splash/presentation/views/splash_view.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -24,8 +23,8 @@ void main() async {
   await Hive.openBox('topRatedMovies');
   await Hive.openBox('upcomingMovies');
   await Hive.openBox('moviesDetails');
-  await setupGetit();
 
+  await setupGetit();
   runApp(const Movies());
 }
 

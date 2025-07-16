@@ -17,19 +17,19 @@ class MoviesEntityAdapter extends TypeAdapter<MoviesEntity> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return MoviesEntity(
+      bkgroundUrl: fields[5] as String,
       idMovie: fields[0] as int,
       name: fields[1] as String,
       posterUrl: fields[2] as String,
       publishedDate: fields[3] as String,
       rating: fields[4] as double,
-      bkgroundUrl: fields[5] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, MoviesEntity obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.idMovie)
       ..writeByte(1)
@@ -39,7 +39,9 @@ class MoviesEntityAdapter extends TypeAdapter<MoviesEntity> {
       ..writeByte(3)
       ..write(obj.publishedDate)
       ..writeByte(4)
-      ..write(obj.rating);
+      ..write(obj.rating)
+      ..writeByte(5)
+      ..write(obj.bkgroundUrl);
   }
 
   @override
