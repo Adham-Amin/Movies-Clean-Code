@@ -9,6 +9,8 @@ import 'package:movies/Features/categories/domain/entities/categories_entity.dar
 import 'package:movies/Features/details/domain/entities/details_movie_entity.dart';
 import 'package:movies/Features/details/domain/entities/genre_entity.dart';
 import 'package:movies/Core/domain/entities/movies_entity.dart';
+import 'package:movies/Features/details/presentation/manager/details_movie_cubit/details_movie_cubit.dart';
+import 'package:movies/Features/details/presentation/manager/similer_movie_cubit/similer_movie_cubit.dart';
 import 'package:movies/Features/home/presentation/manager/popular_movies_cubit/popular_movies_cubit.dart';
 import 'package:movies/Features/home/presentation/manager/top_rated_movies_cubit/top_rated_movies_cubit.dart';
 import 'package:movies/Features/home/presentation/manager/upcoming_movies_cubit/upcoming_movies_cubit.dart';
@@ -57,12 +59,12 @@ class Movies extends StatelessWidget {
               (context) =>
                   getIt.get<UpcomingMoviesCubit>()..getUpcomingMovies(),
         ),
+        BlocProvider(create: (context) => getIt.get<SearchCubit>()),
         BlocProvider(
-          create: (context) => getIt.get<SearchCubit>(),
+          create: (context) => getIt.get<WatchlistCubit>()..loadWatchlist(),
         ),
-        BlocProvider(
-          create: (context) => getIt.get<WatchlistCubit>(),
-        ),
+        BlocProvider(create: (context) => getIt.get<DetailsMovieCubit>()),
+        BlocProvider(create: (context) => getIt.get<SimilerMovieCubit>())
       ],
       child: ScreenUtilInit(
         designSize: const Size(412, 892),

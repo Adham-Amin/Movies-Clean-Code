@@ -5,6 +5,7 @@ import 'package:movies/Core/utils/app_styles.dart';
 import 'package:movies/Core/widgets/error_widget.dart';
 import 'package:movies/Core/widgets/loading_widget.dart';
 import 'package:movies/Core/widgets/poster_image.dart';
+import 'package:movies/Features/details/presentation/views/details_movie_view.dart';
 import 'package:movies/Features/watchlist/presentation/cubit/wishlist_cubit.dart';
 import 'package:movies/Features/watchlist/presentation/cubit/wishlist_state.dart';
 import 'package:movies/core/utils/app_colors.dart';
@@ -28,7 +29,15 @@ class WatchlistViewBody extends StatelessWidget {
               ),
               itemCount: state.watchlist.length,
               itemBuilder: (context, index) {
-                return PosterImage(movie: state.watchlist[index]);
+                return GestureDetector(
+                  onTap:
+                      () => Navigator.pushNamed(
+                        context,
+                        DetailsMovieView.routeName,
+                        arguments: state.watchlist[index].idMovie,
+                      ),
+                  child: PosterImage(movie: state.watchlist[index]),
+                );
               },
             );
           } else if (state is WatchlistError) {

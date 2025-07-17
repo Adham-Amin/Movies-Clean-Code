@@ -5,6 +5,7 @@ import 'package:movies/Core/utils/app_styles.dart';
 import 'package:movies/Core/widgets/custom_network_image.dart';
 import 'package:movies/Core/domain/entities/movies_entity.dart';
 import 'package:movies/Core/widgets/poster_image.dart';
+import 'package:movies/Features/details/presentation/views/details_movie_view.dart';
 
 class HeaderSectionHome extends StatelessWidget {
   const HeaderSectionHome({super.key, required this.movie});
@@ -27,7 +28,15 @@ class HeaderSectionHome extends StatelessWidget {
             bottom: -80.h,
             child: Row(
               children: [
-                PosterImage(movie: movie),
+                GestureDetector(
+                  onTap:
+                      () => Navigator.pushNamed(
+                        context,
+                        DetailsMovieView.routeName,
+                        arguments: movie.idMovie,
+                      ),
+                  child: PosterImage(movie: movie),
+                ),
                 SizedBox(width: 16.w),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

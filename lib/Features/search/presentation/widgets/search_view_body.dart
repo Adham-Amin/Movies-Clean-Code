@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/Core/utils/app_colors.dart';
 import 'package:movies/Core/widgets/error_widget.dart';
 import 'package:movies/Core/widgets/loading_widget.dart';
+import 'package:movies/Features/details/presentation/views/details_movie_view.dart';
 import 'package:movies/Features/search/presentation/manager/cubit/search_cubit.dart';
 import 'package:movies/Features/search/presentation/widgets/custom_text_field.dart';
 import 'package:movies/Features/search/presentation/widgets/no_movies.dart';
@@ -32,13 +33,19 @@ class SearchViewBody extends StatelessWidget {
                 return Expanded(
                   child: ListView.separated(
                     itemCount: state.movies.length,
-                    separatorBuilder: (_, __) => Divider(
-                      height: 24.h,
-                      color: AppColors.ironNight,
-                    ),
+                    separatorBuilder:
+                        (_, __) =>
+                            Divider(height: 24.h, color: AppColors.ironNight),
                     itemBuilder:
-                        (context, index) =>
-                            SearchMovieItem(movie: state.movies[index]),
+                        (context, index) => GestureDetector(
+                          onTap:
+                              () => Navigator.pushNamed(
+                                context,
+                                DetailsMovieView.routeName,
+                                arguments: state.movies[index].idMovie,
+                              ),
+                          child: SearchMovieItem(movie: state.movies[index]),
+                        ),
                   ),
                 );
               } else if (state is SearchFailure) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/Core/domain/entities/movies_entity.dart';
+import 'package:movies/Features/details/presentation/views/details_movie_view.dart';
 import 'package:movies/Features/home/presentation/widgets/recomended_item.dart';
 import 'package:movies/Features/home/presentation/widgets/section_container.dart';
 
@@ -27,7 +28,15 @@ class RecommendedSection extends StatelessWidget {
                 ),
               ],
             ),
-            child: RecomendedItem(movie: movies[index]),
+            child: GestureDetector(
+              onTap:
+                  () => Navigator.pushNamed(
+                    context,
+                    DetailsMovieView.routeName,
+                    arguments: movies[index].idMovie,
+                  ),
+              child: RecomendedItem(movie: movies[index]),
+            ),
           ),
     );
   }

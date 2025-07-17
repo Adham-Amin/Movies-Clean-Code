@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/Core/widgets/error_widget.dart';
 import 'package:movies/Core/widgets/poster_image.dart';
 import 'package:movies/Features/categories/presentation/manager/movies_category_cubit/movies_category_cubit.dart';
+import 'package:movies/Features/details/presentation/views/details_movie_view.dart';
 
 class MoviesCategoryViewBody extends StatefulWidget {
   const MoviesCategoryViewBody({super.key, required this.id});
@@ -38,8 +39,15 @@ class _MoviesCategoryViewBodyState extends State<MoviesCategoryViewBody> {
                 mainAxisSpacing: 10,
               ),
               itemBuilder:
-                  (context, index) =>
-                      PosterImage(movie: state.moviesCategory[index]),
+                  (context, index) => GestureDetector(
+                    onTap:
+                        () => Navigator.pushNamed(
+                          context,
+                          DetailsMovieView.routeName,
+                          arguments: state.moviesCategory[index].idMovie,
+                        ),
+                    child: PosterImage(movie: state.moviesCategory[index]),
+                  ),
               itemCount: state.moviesCategory.length,
             );
           } else if (state is MoviesCategoryFailure) {
